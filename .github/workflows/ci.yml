@@ -1,0 +1,26 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Code checkout karo
+        uses: actions/checkout@v4
+
+      - name: Node.js setup karo
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Dependencies install karo
+        run: npm ci
+
+      - name: App start hoti hai check karo
+        run: node -e "require('./index.js')" &
